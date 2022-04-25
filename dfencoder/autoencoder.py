@@ -223,10 +223,7 @@ class AutoEncoder(torch.nn.Module):
         for ft in objects:
             feature = {}
             vl = df[ft].value_counts()
-            if len(vl) < 3:
-                feature['cats'] = list(vl.index)
-                self.binary_fts[ft] = feature
-                continue
+
             cats = list(vl[vl >= self.min_cats].index)
             feature['cats'] = cats
             self.categorical_fts[ft] = feature
